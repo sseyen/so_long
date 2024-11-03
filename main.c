@@ -6,7 +6,7 @@
 /*   By: alisseye <alisseye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:50:46 by alisseye          #+#    #+#             */
-/*   Updated: 2024/11/03 22:45:11 by alisseye         ###   ########.fr       */
+/*   Updated: 2024/11/03 23:18:02 by alisseye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ int	main(int argc, char **argv)
 	{
 		ft_putstr_fd(*map, 1);
 		ft_putchar_fd('\n', 1);
+		free(*map);
 		map++;
 	}
+	free(map);
 }
