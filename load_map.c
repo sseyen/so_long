@@ -6,7 +6,7 @@
 /*   By: alisseye <alisseye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 14:47:05 by alisseye          #+#    #+#             */
-/*   Updated: 2024/11/03 23:18:55 by alisseye         ###   ########.fr       */
+/*   Updated: 2024/11/04 16:20:13 by alisseye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ char	**ft_load_map(char *file)
 
 	linelen = ft_linelen(file);
 	count_lines = ft_count_lines(file, linelen);
+	if (!linelen || !count_lines)
+		return (NULL);
 	map = ft_allocmap(count_lines, linelen);
 	if (!map)
 		return (NULL);
