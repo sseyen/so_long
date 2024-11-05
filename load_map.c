@@ -6,7 +6,7 @@
 /*   By: alisseye <alisseye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 14:47:05 by alisseye          #+#    #+#             */
-/*   Updated: 2024/11/04 16:58:08 by alisseye         ###   ########.fr       */
+/*   Updated: 2024/11/05 16:40:15 by alisseye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,6 @@ static char	**ft_allocmap(int count_lines, int linelen)
 	char	**map;
 	int		i;
 
-	if (count_lines < 3 && linelen < 5)
-		return (NULL);
-	else if (count_lines < 5 && linelen < 3)
-		return (NULL);
 	map = (char **)malloc(sizeof(char *) * (count_lines + 1));
 	if (!map)
 		return (NULL);
@@ -75,8 +71,8 @@ static char	**ft_allocmap(int count_lines, int linelen)
 		map[i] = (char *)malloc(sizeof(char) * (linelen + 1));
 		if (!map[i])
 		{
-			while (i--)
-				free(map[i]);
+			while (i > 0)
+				free(map[--i]);
 			free(map);
 			return (NULL);
 		}
@@ -116,7 +112,7 @@ char	**ft_load_map(char *file)
 
 	linelen = ft_linelen(file);
 	count_lines = ft_count_lines(file, linelen);
-	if (!linelen || !count_lines)
+	if ((count_lines < 3 || linelen < 5) && (count_lines < 5 || linelen < 3))
 		return (NULL);
 	map = ft_allocmap(count_lines, linelen);
 	if (!map)
