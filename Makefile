@@ -6,13 +6,13 @@
 #    By: alisseye <alisseye@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/30 16:59:43 by alisseye          #+#    #+#              #
-#    Updated: 2024/11/05 20:09:16 by alisseye         ###   ########.fr        #
+#    Updated: 2024/11/05 20:28:03 by alisseye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 
-SRCS = main.c load_map.c validate_map.c \ 
+SRCS = main.c load_map.c validate_map.c \
 	utils.c get_next_line.c
 
 OBJS = $(SRCS:.c=.o)
@@ -31,8 +31,8 @@ all: $(NAME) $(LIBFT) $(MLX)
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(NAME): $(OBJ) $(LIBFT) $(MLX)
-	$(CC) $(CFLAGS) $(OBJ) -Lmlx -lmlx -framework OpenGL -framework AppKit -Llibft -lft -o $(NAME)
+$(NAME): $(OBJS) $(LIBFT) $(MLX)
+	$(CC) $(CFLAGS) $(OBJS) -Lmlx -lmlx -framework OpenGL -framework AppKit -Llibft -lft -o $(NAME)
 
 $(LIBFT):
 	make -C $(LIBFT_DIR)
@@ -41,8 +41,8 @@ $(MLX):
 	make -C $(MLX_DIR)
 
 clean:
-	make -c $(LIBFT_DIR) clean
-	rm -f $(OBJ)
+	make -C $(LIBFT_DIR) clean
+	rm -f $(OBJS)
 
 fclean: clean
 	make -C $(MLX_DIR) clean

@@ -6,17 +6,17 @@
 /*   By: alisseye <alisseye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 14:47:05 by alisseye          #+#    #+#             */
-/*   Updated: 2024/11/05 16:40:15 by alisseye         ###   ########.fr       */
+/*   Updated: 2024/11/05 20:36:00 by alisseye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static int	ft_linelen(char *file)
+static size_t	ft_linelen(char *file)
 {
 	int		fd;
 	char	*line;
-	int		len;
+	size_t	len;
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
@@ -30,11 +30,11 @@ static int	ft_linelen(char *file)
 	return (len);
 }
 
-static int	ft_count_lines(char *file, int len)
+static size_t	ft_count_lines(char *file, size_t len)
 {
 	int		fd;
 	char	*line;
-	int		count;
+	size_t	count;
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
@@ -57,10 +57,10 @@ static int	ft_count_lines(char *file, int len)
 	return (count);
 }
 
-static char	**ft_allocmap(int count_lines, int linelen)
+static char	**ft_allocmap(size_t count_lines, size_t linelen)
 {
 	char	**map;
-	int		i;
+	size_t		i;
 
 	map = (char **)malloc(sizeof(char *) * (count_lines + 1));
 	if (!map)
@@ -82,11 +82,11 @@ static char	**ft_allocmap(int count_lines, int linelen)
 	return (map);
 }
 
-static char	**ft_writemap(char **map, char *file, int linelen, int count_lines)
+static char	**ft_writemap(char **map, char *file)
 {
 	int		fd;
 	char	*line;
-	int		i;
+	size_t		i;
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
@@ -107,8 +107,8 @@ static char	**ft_writemap(char **map, char *file, int linelen, int count_lines)
 char	**ft_load_map(char *file)
 {
 	char	**map;
-	int		linelen;
-	int		count_lines;
+	size_t	linelen;
+	size_t	count_lines;
 
 	linelen = ft_linelen(file);
 	count_lines = ft_count_lines(file, linelen);
@@ -117,6 +117,6 @@ char	**ft_load_map(char *file)
 	map = ft_allocmap(count_lines, linelen);
 	if (!map)
 		return (NULL);
-	map = ft_writemap(map, file, linelen, count_lines);
+	map = ft_writemap(map, file);
 	return (map);
 }

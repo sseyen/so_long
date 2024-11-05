@@ -6,18 +6,20 @@
 /*   By: alisseye <alisseye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:50:46 by alisseye          #+#    #+#             */
-/*   Updated: 2024/11/05 16:46:23 by alisseye         ###   ########.fr       */
+/*   Updated: 2024/11/05 20:40:41 by alisseye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+void	run(char **map)
+{
+	return ;
+}
+
 int	main(int argc, char **argv)
 {
-	void	*mlx;
-	int		fd;
 	char	**map;
-	int		i;
 
 	if (argc != 2)
 	{
@@ -36,13 +38,6 @@ int	main(int argc, char **argv)
 		ft_putstr_fd("Error\nInvalid map\n", 1);
 		return (1);
 	}
-	i = 0;
-	while (map[i])
-	{
-		ft_putstr_fd(map[i], 1);
-		ft_putchar_fd('\n', 1);
-		free(map[i]);
-		i++;
-	}
-	free(map);
+	run(map);
+	return (0);
 }
