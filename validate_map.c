@@ -6,7 +6,7 @@
 /*   By: alisseye <alisseye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:46:23 by alisseye          #+#    #+#             */
-/*   Updated: 2024/11/05 19:53:48 by alisseye         ###   ########.fr       */
+/*   Updated: 2024/11/05 20:37:22 by alisseye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	ft_validate_way(char **map, t_point point, int collectables)
 {
-	int					i;
-	int					j;
+	size_t				i;
+	size_t				j;
 	static t_valid_way	way = {0, 0};
 
 	i = point.y;
@@ -39,8 +39,8 @@ int	ft_validate_way(char **map, t_point point, int collectables)
 
 int	ft_validate_borders(char **map)
 {
-	int	i;
-	int	j;
+	size_t	i;
+	size_t	j;
 
 	i = 0;
 	while (map[i])
@@ -65,11 +65,11 @@ int	ft_validate_borders(char **map)
 	return (1);
 }
 
-int	ft_count(char **map, char c)
+size_t	ft_count(char **map, char c)
 {
-	int	i;
-	int	j;
-	int	count;
+	size_t	i;
+	size_t	j;
+	size_t	count;
 
 	i = 0;
 	count = 0;
@@ -89,8 +89,8 @@ int	ft_count(char **map, char c)
 
 int	ft_validate_chars(char **map)
 {
-	int	i;
-	int	j;
+	size_t	i;
+	size_t	j;
 
 	i = 0;
 	while (map[i])

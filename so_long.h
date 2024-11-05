@@ -6,7 +6,7 @@
 /*   By: alisseye <alisseye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 17:20:21 by alisseye          #+#    #+#             */
-/*   Updated: 2024/11/05 19:42:28 by alisseye         ###   ########.fr       */
+/*   Updated: 2024/11/05 20:39:37 by alisseye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	**ft_load_map(char *fd);
 char	**ft_freemap(char **map);
 char	**ft_copymap(char **map);
 int		ft_validate_map(char **map);
-int		ft_count(char **map, char c);
+size_t	ft_count(char **map, char c);
 t_point	ft_find(char **map, char c);
 
 #endif
