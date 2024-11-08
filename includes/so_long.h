@@ -6,7 +6,7 @@
 /*   By: alisseye <alisseye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 20:27:04 by alisseye          #+#    #+#             */
-/*   Updated: 2024/11/08 21:32:17 by alisseye         ###   ########.fr       */
+/*   Updated: 2024/11/08 23:19:19 by alisseye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,15 @@ typedef struct map
 t_map	*load_map(char *file);
 size_t	get_lines_count(char *file);
 size_t	get_line_len(char *file);
-size_t	count_chars(char **map, char c);
 t_point	find_char(char **map, char c);
 
-// free_map.c
+// validate_map.c
+int		validate_map(t_map *map);
+
+// utils
+size_t	count_chars(char **map, char c);
 void	free_map(t_map *map);
+t_map	*copy_map(t_map *map);
+
 
 #endif

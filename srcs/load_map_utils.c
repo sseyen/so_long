@@ -6,7 +6,7 @@
 /*   By: alisseye <alisseye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 21:00:04 by alisseye          #+#    #+#             */
-/*   Updated: 2024/11/08 21:37:10 by alisseye         ###   ########.fr       */
+/*   Updated: 2024/11/08 23:14:59 by alisseye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,26 +37,6 @@ t_point	find_char(char **map, char c)
 	point.x = -1;
 	point.y = -1;
 	return (point);
-}
-
-size_t	count_chars(char **map, char c)
-{
-	size_t	count;
-	size_t	i;
-	size_t	j;
-
-	count = 0;
-	i = -1;
-	while (map[++i])
-	{
-		j = -1;
-		while (map[i][++j])
-		{
-			if (map[i][j] == c)
-				count++;
-		}
-	}
-	return (count);
 }
 
 size_t	get_lines_count(char *file)
