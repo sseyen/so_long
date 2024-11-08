@@ -6,14 +6,14 @@
 #    By: alisseye <alisseye@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/30 16:59:43 by alisseye          #+#    #+#              #
-#    Updated: 2024/11/08 21:33:57 by alisseye         ###   ########.fr        #
+#    Updated: 2024/11/08 23:02:45 by alisseye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 
 SRCS = srcs/main.c srcs/get_next_line.c srcs/load_map.c \
-	srcs/load_map_utils.c srcs/free_map.c
+	srcs/load_map_utils.c srcs/utils.c srcs/validate_map.c
 
 OBJS = $(SRCS:.c=.o)
 

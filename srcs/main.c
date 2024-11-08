@@ -6,7 +6,7 @@
 /*   By: alisseye <alisseye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 20:30:23 by alisseye          #+#    #+#             */
-/*   Updated: 2024/11/08 21:34:48 by alisseye         ###   ########.fr       */
+/*   Updated: 2024/11/08 23:08:54 by alisseye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,12 @@ int	main(int argc, char **argv)
 	map = load_map(argv[1]);
 	if (!map)
 		return (1);
-	// if (!validate_map(map))
-	// {
-	// 	free_map(map);
-	// 	ft_putstr_fd("Error\nInvalid map\n", 1);
-	// 	return (1);
-	// }
+	if (!validate_map(map))
+	{
+		free_map(map);
+		ft_putstr_fd("Error\nInvalid map\n", 1);
+		return (1);
+	}
 	free_map(map);
 	return (0);
 }
