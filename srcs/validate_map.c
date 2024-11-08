@@ -6,7 +6,7 @@
 /*   By: alisseye <alisseye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 21:58:02 by alisseye          #+#    #+#             */
-/*   Updated: 2024/11/08 23:16:34 by alisseye         ###   ########.fr       */
+/*   Updated: 2024/11/08 23:27:24 by alisseye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,5 +122,6 @@ int	validate_map(t_map *map)
 		free_map(map_copy);
 		return (0);
 	}
+	free_map(map_copy);
 	return (1);
 }
