@@ -6,11 +6,11 @@
 /*   By: alisseye <alisseye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 18:21:25 by alisseye          #+#    #+#             */
-/*   Updated: 2024/11/03 19:35:22 by alisseye         ###   ########.fr       */
+/*   Updated: 2024/11/08 20:26:31 by alisseye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "../includes/get_next_line.h"
 
 char	*ft_updbuffer(char *new, char *buffer)
 {

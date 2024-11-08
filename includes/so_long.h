@@ -5,18 +5,17 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: alisseye <alisseye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/30 17:20:21 by alisseye          #+#    #+#             */
-/*   Updated: 2024/11/05 20:39:37 by alisseye         ###   ########.fr       */
+/*   Created: 2024/11/08 20:27:04 by alisseye          #+#    #+#             */
+/*   Updated: 2024/11/08 21:32:17 by alisseye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "mlx/mlx.h"
-# include "libft/libft.h"
+# include "../mlx/mlx.h"
+# include "../libft/libft.h"
 # include "get_next_line.h"
-# include <fcntl.h>
 
 typedef struct s_point
 {
@@ -24,17 +23,25 @@ typedef struct s_point
 	int	y;
 }	t_point;
 
-typedef struct s_valid_way
+typedef struct map
 {
-	int	collect;
-	int	exit;
-}	t_valid_way;
+	char		**map;
+	t_point		player;
+	t_point		exit;
+	t_point		*collect;
+	size_t		collect_count;
+	size_t		lines;
+	size_t		len;
+}	t_map;
 
-char	**ft_load_map(char *fd);
-char	**ft_freemap(char **map);
-char	**ft_copymap(char **map);
-int		ft_validate_map(char **map);
-size_t	ft_count(char **map, char c);
-t_point	ft_find(char **map, char c);
+// load_map.c + load_map_utils.c
+t_map	*load_map(char *file);
+size_t	get_lines_count(char *file);
+size_t	get_line_len(char *file);
+size_t	count_chars(char **map, char c);
+t_point	find_char(char **map, char c);
+
+// free_map.c
+void	free_map(t_map *map);
 
 #endif
