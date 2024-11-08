@@ -6,7 +6,7 @@
 /*   By: alisseye <alisseye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 14:47:05 by alisseye          #+#    #+#             */
-/*   Updated: 2024/11/05 20:36:00 by alisseye         ###   ########.fr       */
+/*   Updated: 2024/11/08 20:19:32 by alisseye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ static size_t	ft_linelen(char *file)
 		return (0);
 	len = ft_strlen(line);
 	free(line);
+	if (close(fd) == -1)
+		return (0);
 	return (len);
 }
 
@@ -53,14 +55,15 @@ static size_t	ft_count_lines(char *file, size_t len)
 		free(line);
 		line = get_next_line(fd);
 	}
-	close(fd);
+	if (close(fd) == -1)
+		return (0);
 	return (count);
 }
 
 static char	**ft_allocmap(size_t count_lines, size_t linelen)
 {
 	char	**map;
-	size_t		i;
+	size_t	i;
 
 	map = (char **)malloc(sizeof(char *) * (count_lines + 1));
 	if (!map)
@@ -86,7 +89,7 @@ static char	**ft_writemap(char **map, char *file)
 {
 	int		fd;
 	char	*line;
-	size_t		i;
+	size_t	i;
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
@@ -100,23 +103,39 @@ static char	**ft_writemap(char **map, char *file)
 		line = get_next_line(fd);
 		i++;
 	}
-	close(fd);
+	if (close(fd) == -1)
+	{
+		while(*map)
+			free(*map++);
+		free(map);
+		return (NULL);
+	}
 	return (map);
 }
 
-char	**ft_load_map(char *file)
+t_map	*ft_load_map(char *file)
 {
-	char	**map;
-	size_t	linelen;
-	size_t	count_lines;
+	t_map	*map;
 
-	linelen = ft_linelen(file);
-	count_lines = ft_count_lines(file, linelen);
-	if ((count_lines < 3 || linelen < 5) && (count_lines < 5 || linelen < 3))
-		return (NULL);
-	map = ft_allocmap(count_lines, linelen);
+	map = (t_map *)malloc(sizeof(t_map));
 	if (!map)
 		return (NULL);
-	map = ft_writemap(map, file);
+	map->len = ft_linelen(file);
+	map->lines = ft_count_lines(file, map->len);
+	if ((map->lines < 3 || map->len < 5) && (map->lines < 5 || map->len < 3))
+		return (NULL);
+	map->map = ft_allocmap(map->lines, map->len);
+	if (!map->map)
+	{
+		free(map);
+		return (NULL);
+	}
+	map->map = ft_writemap(map->map, file);
+	if (!map->map)
+	{
+		free(map);
+		return (NULL);
+	}
+	ft_writecoords(map);
 	return (map);
 }

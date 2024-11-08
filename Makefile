@@ -6,19 +6,19 @@
 #    By: alisseye <alisseye@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/30 16:59:43 by alisseye          #+#    #+#              #
-#    Updated: 2024/11/05 20:28:03 by alisseye         ###   ########.fr        #
+#    Updated: 2024/11/08 21:33:57 by alisseye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 
-SRCS = main.c load_map.c validate_map.c \
-	utils.c get_next_line.c
+SRCS = srcs/main.c srcs/get_next_line.c srcs/load_map.c \
+	srcs/load_map_utils.c srcs/free_map.c
 
 OBJS = $(SRCS:.c=.o)
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a

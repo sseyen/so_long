@@ -2,5 +2,5 @@
 
 for map in maps/*; do
 	echo "Testing $map"
-	./a.out "$map"
+	./so_long "$map"
 done
