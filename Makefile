@@ -6,19 +6,20 @@
 #    By: alisseye <alisseye@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/30 16:59:43 by alisseye          #+#    #+#              #
-#    Updated: 2024/11/08 23:02:45 by alisseye         ###   ########.fr        #
+#    Updated: 2024/11/16 01:21:05 by alisseye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 
 SRCS = srcs/main.c srcs/get_next_line.c srcs/load_map.c \
-	srcs/load_map_utils.c srcs/utils.c srcs/validate_map.c
+	srcs/load_map_utils.c srcs/utils.c srcs/validate_map.c \
+	srcs/run_mlx.c
 
 OBJS = $(SRCS:.c=.o)
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror
 
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
