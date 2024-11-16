@@ -6,7 +6,7 @@
 /*   By: alisseye <alisseye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 22:54:05 by alisseye          #+#    #+#             */
-/*   Updated: 2024/11/16 01:38:47 by alisseye         ###   ########.fr       */
+/*   Updated: 2024/11/16 02:09:30 by alisseye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,6 @@ static void	move(t_data *data, int x, int y)
 {
 	if (data->map->map[data->y + y][data->x + x] == '1')
 		return ;
-	if (data->map->map[data->y + y][data->x + x] == 'E')
-	{
-		if (data->map->collect_count == 0)
-			exit_mlx(data);
-	}
 	if (data->map->map[data->y + y][data->x + x] == 'C')
 	{
 		data->map->map[data->y + y][data->x + x] = '0';
@@ -37,6 +32,9 @@ static void	move(t_data *data, int x, int y)
 	data->y += y;
 	mlx_put_image_to_window(data->mlx, data->win, data->img_player, \
 	data->x * BLOCK_SIZE, data->y * BLOCK_SIZE);
+	if (data->map->map[data->y][data->x] == 'E')
+		if (data->map->collect_count == 0)
+			exit_mlx(data);
 }
 
 static int	handle_keypress(int keycode, t_data *data)
