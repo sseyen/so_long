@@ -6,40 +6,11 @@
 /*   By: alisseye <alisseye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 20:37:13 by alisseye          #+#    #+#             */
-/*   Updated: 2024/11/08 21:36:22 by alisseye         ###   ########.fr       */
+/*   Updated: 2024/11/15 23:31:39 by alisseye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
-
-static t_point	*write_collectables(t_map *map)
-{
-	size_t	i;
-	size_t	j;
-	size_t	k;
-
-	map->collect_count = count_chars(map->map, 'C');
-	map->collect = (t_point *)malloc(sizeof(t_point) * map->collect_count);
-	if (!map->collect)
-		return (NULL);
-	i = 0;
-	k = 0;
-	while (map->map[i])
-	{
-		j = 0;
-		while (map->map[i][j])
-		{
-			if (map->map[i][j] == 'C')
-			{
-				map->collect[k].x = j;
-				map->collect[k++].y = i;
-			}
-			j++;
-		}
-		i++;
-	}
-	return (map->collect);
-}
 
 static char	**write_map_lines(char *file, char **map)
 {
@@ -74,9 +45,9 @@ static char	**allocate_map_lines(t_map *map)
 	size_t	i;
 
 	i = 0;
-	while (i < map->lines)
+	while (i < map->height)
 	{
-		map->map[i] = (char *)malloc(sizeof(char) * (map->len + 1));
+		map->map[i] = (char *)malloc(sizeof(char) * (map->width + 1));
 		if (!map->map[i])
 		{
 			while (i > 0)
@@ -90,16 +61,16 @@ static char	**allocate_map_lines(t_map *map)
 
 static t_map	*write_map(char *file, t_map *map)
 {
-	map->len = get_line_len(file);
-	if (!map->len)
+	map->width = get_width(file);
+	if (!map->width)
 		return (NULL);
-	map->lines = get_lines_count(file);
-	if (!map->lines)
+	map->height = get_height(file);
+	if (!map->height)
 		return (NULL);
-	map->map = (char **)malloc(sizeof(char *) * (map->lines + 1));
+	map->map = (char **)malloc(sizeof(char *) * (map->height + 1));
 	if (!map->map)
 		return (NULL);
-	map->map[map->lines] = NULL;
+	map->map[map->height] = NULL;
 	if (!allocate_map_lines(map))
 	{
 		free(map->map);
@@ -125,7 +96,7 @@ t_map	*load_map(char *file)
 		free(map);
 		return (NULL);
 	}
-	write_collectables(map);
+	map->collect_count = count_chars(map->map, 'C');
 	map->player = find_char(map->map, 'P');
 	map->exit = find_char(map->map, 'E');
 	return (map);

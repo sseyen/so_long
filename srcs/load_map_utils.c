@@ -6,7 +6,7 @@
 /*   By: alisseye <alisseye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 21:00:04 by alisseye          #+#    #+#             */
-/*   Updated: 2024/11/08 23:14:59 by alisseye         ###   ########.fr       */
+/*   Updated: 2024/11/15 23:18:07 by alisseye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_point	find_char(char **map, char c)
 	return (point);
 }
 
-size_t	get_lines_count(char *file)
+size_t	get_height(char *file)
 {
 	int		fd;
 	char	*line;
@@ -61,7 +61,7 @@ size_t	get_lines_count(char *file)
 	return (count);
 }
 
-size_t	get_line_len(char *file)
+size_t	get_width(char *file)
 {
 	int		fd;
 	char	*line;

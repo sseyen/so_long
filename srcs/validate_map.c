@@ -6,7 +6,7 @@
 /*   By: alisseye <alisseye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 21:58:02 by alisseye          #+#    #+#             */
-/*   Updated: 2024/11/08 23:27:24 by alisseye         ###   ########.fr       */
+/*   Updated: 2024/11/16 00:37:30 by alisseye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,14 +88,14 @@ static int	validate_chars(t_map *map)
 	return (1);
 }
 
-static int	validate_len(t_map *map)
+static int	validate_width(t_map *map)
 {
 	size_t	i;
 
 	i = 0;
 	while (map->map[i])
 	{
-		if (ft_strlen(map->map[i]) != map->len)
+		if (ft_strlen(map->map[i]) != map->width)
 			return (0);
 		i++;
 	}
@@ -106,13 +106,14 @@ int	validate_map(t_map *map)
 {
 	t_map	*map_copy;
 
-	if ((map->lines < 3 && map->len < 5) || (map->lines < 5 && map->len < 3))
+	if ((map->height < 3 && map->width < 5) \
+		|| (map->height < 5 && map->width < 3))
 		return (0);
 	if (map->player.x == -1 || map->exit.x == -1 || map->collect_count < 1)
 		return (0);
 	if (count_chars(map->map, 'P') != 1 || count_chars(map->map, 'E') != 1)
 		return (0);
-	if (!validate_len(map) || !validate_chars(map) || !validate_borders(map))
+	if (!validate_width(map) || !validate_chars(map) || !validate_borders(map))
 		return (0);
 	map_copy = copy_map(map);
 	if (!map_copy)

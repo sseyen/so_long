@@ -6,49 +6,47 @@
 /*   By: alisseye <alisseye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 21:29:45 by alisseye          #+#    #+#             */
-/*   Updated: 2024/11/08 23:15:14 by alisseye         ###   ########.fr       */
+/*   Updated: 2024/11/16 01:13:58 by alisseye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
+
+int	exit_mlx(t_data *data)
+{
+	mlx_destroy_image(data->mlx, data->img_player);
+	mlx_destroy_image(data->mlx, data->img_wall);
+	mlx_destroy_image(data->mlx, data->img_exit);
+	mlx_destroy_image(data->mlx, data->img_collect);
+	mlx_destroy_image(data->mlx, data->img_floor);
+	mlx_destroy_window(data->mlx, data->win);
+	free(data->mlx);
+	free_map(data->map);
+	free(data);
+	exit(0);
+	return (0);
+}
 
 void	free_map(t_map *map)
 {
 	size_t	i;
 
 	i = 0;
-	while (i < map->lines)
+	while (i < map->height)
 		free(map->map[i++]);
 	free(map->map);
-	free(map->collect);
 	free(map);
-}
-
-static t_point	*copy_map_collect(t_map *map_copy, t_map *map)
-{
-	size_t	i;
-
-	map_copy->collect = (t_point *)malloc(sizeof(t_point) * map->collect_count);
-	if (!map_copy->collect)
-		return (NULL);
-	i = 0;
-	while (i < map->collect_count)
-	{
-		map_copy->collect[i] = map->collect[i];
-		i++;
-	}
-	return (map_copy->collect);
 }
 
 static char	**copy_map_lines(t_map *map_copy, t_map *map)
 {
 	size_t	i;
 
-	map_copy->map = (char **)malloc(sizeof(char *) * (map->lines + 1));
+	map_copy->map = (char **)malloc(sizeof(char *) * (map->height + 1));
 	if (!map_copy->map)
 		return (NULL);
 	i = 0;
-	while (i < map->lines)
+	while (i < map->height)
 	{
 		map_copy->map[i] = ft_strdup(map->map[i]);
 		if (!map_copy->map[i])
@@ -76,9 +74,8 @@ t_map	*copy_map(t_map *map)
 		free(map_copy);
 		return (NULL);
 	}
-	map_copy->collect = copy_map_collect(map_copy, map);
-	map_copy->lines = map->lines;
-	map_copy->len = map->len;
+	map_copy->height = map->height;
+	map_copy->width = map->width;
 	map_copy->collect_count = map->collect_count;
 	map_copy->player = map->player;
 	map_copy->exit = map->exit;
