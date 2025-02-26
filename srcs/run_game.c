@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   run_mlx.c                                          :+:      :+:    :+:   */
+/*   run_game.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alisseye <alisseye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 22:54:05 by alisseye          #+#    #+#             */
-/*   Updated: 2024/11/16 02:09:30 by alisseye         ###   ########.fr       */
+/*   Updated: 2025/02/26 14:25:50 by alisseye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	move(t_data *data, int x, int y)
 	data->x * BLOCK_SIZE, data->y * BLOCK_SIZE);
 	if (data->map->map[data->y][data->x] == 'E')
 		if (data->map->collect_count == 0)
-			exit_mlx(data);
+			exit_game(data);
 }
 
 static int	handle_keypress(int keycode, t_data *data)
@@ -42,7 +42,7 @@ static int	handle_keypress(int keycode, t_data *data)
 	data->prev_x = data->x;
 	data->prev_y = data->y;
 	if (keycode == ESC_KEY)
-		exit_mlx(data);
+		exit_game(data);
 	else if (keycode == KEY_UP)
 		move(data, 0, -1);
 	else if (keycode == KEY_DOWN)
@@ -108,10 +108,11 @@ static t_data	*init_data(t_map *map)
 	data->y = map->player.y;
 	data->prev_x = data->x;
 	data->prev_y = data->y;
+	data->move = 0;
 	return (data);
 }
 
-void	run_mlx(t_map *map)
+void	run_game(t_map *map)
 {
 	t_data	*data;
 
@@ -120,6 +121,6 @@ void	run_mlx(t_map *map)
 	mlx_put_image_to_window(data->mlx, data->win, \
 		data->img_player, data->x * BLOCK_SIZE, data->y * BLOCK_SIZE);
 	mlx_key_hook(data->win, &handle_keypress, data);
-	mlx_hook(data->win, EVENT_CLOSE, 0, &exit_mlx, data);
+	mlx_hook(data->win, EVENT_CLOSE, 0, &exit_game, data);
 	mlx_loop(data->mlx);
 }

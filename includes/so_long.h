@@ -6,7 +6,7 @@
 /*   By: alisseye <alisseye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 20:27:04 by alisseye          #+#    #+#             */
-/*   Updated: 2024/11/16 01:33:49 by alisseye         ###   ########.fr       */
+/*   Updated: 2025/02/26 14:24:13 by alisseye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,9 @@ int		validate_map(t_map *map);
 size_t	count_chars(char **map, char c);
 void	free_map(t_map *map);
 t_map	*copy_map(t_map *map);
-int		exit_mlx(t_data *data);
+int		exit_game(t_data *data);
 
 // run_mlx.c
-void	run_mlx(t_map *map);
+void	run_game(t_map *map);
 
 #endif

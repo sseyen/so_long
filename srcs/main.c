@@ -6,7 +6,7 @@
 /*   By: alisseye <alisseye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 20:30:23 by alisseye          #+#    #+#             */
-/*   Updated: 2024/11/16 01:11:39 by alisseye         ###   ########.fr       */
+/*   Updated: 2025/02/26 14:23:55 by alisseye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,6 @@ int	main(int argc, char **argv)
 		ft_putstr_fd("Error\nInvalid map\n", 1);
 		return (1);
 	}
-	run_mlx(map);
+	run_game(map);
 	return (0);
 }

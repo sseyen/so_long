@@ -6,13 +6,13 @@
 /*   By: alisseye <alisseye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 21:29:45 by alisseye          #+#    #+#             */
-/*   Updated: 2024/11/16 01:13:58 by alisseye         ###   ########.fr       */
+/*   Updated: 2025/02/26 14:26:49 by alisseye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-int	exit_mlx(t_data *data)
+int	exit_game(t_data *data)
 {
 	mlx_destroy_image(data->mlx, data->img_player);
 	mlx_destroy_image(data->mlx, data->img_wall);
